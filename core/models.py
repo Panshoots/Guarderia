@@ -1,6 +1,6 @@
 from django.db import models
 
-# Create your models here.
+# Modelo para el dueño
 class Dueno(models.Model):
     nombre_dueno = models.CharField(max_length=80, verbose_name="Nombre del Dueño")
     rut_dueno = models.CharField(max_length=80, verbose_name="Rut del Dueño", unique=True)

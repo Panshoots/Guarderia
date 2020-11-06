@@ -1,6 +1,6 @@
 from django.db import models
 
-# Modelo para el dueño
+# Modelo para el dueño de la mascota
 class Dueno(models.Model):
     nombre_dueno = models.CharField(max_length=80, verbose_name="Nombre del Dueño")
     rut_dueno = models.CharField(max_length=80, verbose_name="Rut del Dueño", unique=True)
@@ -18,6 +18,7 @@ class Dueno(models.Model):
         db_table = "dueno"
         ordering = ['id']
 
+# Modelo del Cliente que seria la mascota
 class Cliente(models.Model):
     dueno = models.ManyToManyField(Dueno)
     foto = models.ImageField(upload_to='archivos/imagenes', null=True, blank=True)
@@ -37,6 +38,7 @@ class Cliente(models.Model):
         db_table = "cliente"
         ordering = ['id']
 
+# Modelo para cuando la mascota va a la peluqueria
 class Peluqueria(models.Model):
     cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
     hipersensibilidad = models.BooleanField(verbose_name="Hipersensibilidad", default=False, null=True, blank=True)
@@ -56,6 +58,7 @@ class Peluqueria(models.Model):
         db_table = "peluqueria"
         ordering = ['id']
 
+# Modelo para cuando la mascota se va hospedar en el hotel
 class Huesped(models.Model):
     cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
     nombre_veterinario = models.CharField(max_length=80, verbose_name="Nombre del Veterinario")
